@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 //import 'package:project_2/homepage.dart';
-//import 'signUpScreen.dart';
-//import 'package:firebase_auth/firebase_auth.dart';
+import 'signUpScreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:task_manager/homepage.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -25,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return;
   }
 
-  /*try {
+  try {
     UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: email,
       password: password,
@@ -40,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text('Login failed: $e')),
     );
-  }*/
+  }
 }
 
   @override
@@ -59,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              SizedBox(height: 200),
+              SizedBox(height: 300),
               Text(
                 "BIT-MASTERS: Task Manager",
                 style: TextStyle(
@@ -117,7 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("Don't have an account?"),
-                 /* GestureDetector(
+                  GestureDetector(
                     onTap: () {
                       Navigator.push(
                         context,
@@ -130,7 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontWeight: FontWeight.bold,
                           color: Color.fromARGB(255, 255, 6, 60)),
                     ),
-                  ),*/
+                  ),
                 ],
               ),
             ],

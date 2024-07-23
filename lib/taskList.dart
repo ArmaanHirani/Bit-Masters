@@ -3,6 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class TaskList extends StatefulWidget {
+  final String priority;
+
+  TaskList({required this.priority});
+
   @override
   _TaskListState createState() => _TaskListState();
 }
@@ -27,22 +31,28 @@ class _TaskListState extends State<TaskList> {
     final tasks = tasksSnapshot.docs.map((doc) => Task.fromMap(doc.data())).toList();
 
     setState(() {
-      _tasks = tasks;
+      if (widget.priority == 'None') {
+        _tasks = tasks;
+      } else {
+        _tasks = tasks.where((task) => task.priority == widget.priority).toList();
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: _tasks.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          title: Text(_tasks[index].category),
-          subtitle: Text(_tasks[index].description),
-          trailing: Text(_tasks[index].endDate),
-        );
-      },
-    );
+    return _tasks.isEmpty
+        ? Center(child: Text('No tasks found'))
+        : ListView.builder(
+            itemCount: _tasks.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(_tasks[index].category),
+                subtitle: Text(_tasks[index].description),
+                trailing: Text(_tasks[index].endDate),
+              );
+            },
+          );
   }
 }
 
@@ -84,8 +94,6 @@ class Task {
       'userId': userId,
     };
   }
-
 }
-
-}
-
+message.txt
+3 KB

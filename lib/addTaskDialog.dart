@@ -2,7 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+import 'package:task_manager/taskList.dart';
+
 //import 'package:task_manager/taskList.dart';
+
 import 'package:uuid/uuid.dart';
 
 class AddTaskDialog extends StatefulWidget {
@@ -163,4 +167,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
       )
     );
   }
+
+}
+
 }

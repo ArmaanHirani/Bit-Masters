@@ -78,4 +78,8 @@ class DefaultFirebaseOptions {
     storageBucket: 'bit-masters-task-manager.appspot.com',
     iosBundleId: 'com.example.taskManager.RunnerTests',
   );
+
 }
+
+}
+

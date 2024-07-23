@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-//import 'package:intl/intl.dart';
-import 'taskList.dart';
-import 'addTaskDialog.dart';
+import 'taskListPage.dart';
+import 'addTaskDialog.dart'; // Import the AddTaskDialog file
 
 class homepage extends StatefulWidget {
   @override
@@ -9,25 +8,11 @@ class homepage extends StatefulWidget {
 }
 
 class _homepageState extends State<homepage> {
+  String _selectedPriority = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 50), // Add padding to the right of the button
-            child: TextButton(
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (context) => AddTaskDialog(),
-                );
-              },
-              child: Text('Add New Task', style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black)), // Make the text bold and increase the font size
-            ),
-          ),
-        ],
-      ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -41,10 +26,67 @@ class _homepageState extends State<homepage> {
             SizedBox(height: 20),
             Container(
               alignment: Alignment.center,
-              child: Text('Home Page', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: Colors.white)),
+              child: Text('Homepage', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: Colors.white)),
             ),
-            Expanded(
-              child: TaskList(),
+            SizedBox(height: 10),
+            TextButton(
+              style: ButtonStyle(
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.zero,
+                    side: BorderSide(width: 2, color: Colors.black),
+                  ),
+                ),
+              ),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => AddTaskDialog(),
+                );
+              },
+              child: Text('Add New Task', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black)),
+            ),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => TaskListPage(priority: 'High')),
+                    );
+                  },
+                  child: Text('High'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => TaskListPage(priority: 'Medium')),
+                    );
+                  },
+                  child: Text('Medium'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => TaskListPage(priority: 'Low')),
+                    );
+                  },
+                  child: Text('Low'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => TaskListPage(priority: 'None')),
+                    );
+                  },
+                  child: Text('None'),
+                ),
+              ],
             ),
           ],
         ),
